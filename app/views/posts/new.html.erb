@@ -1,0 +1,15 @@
+<h1>NEW Posts</h1>
+<%= form_with model: @post, url: posts_path, method: :post do |form| %>
+<div><strong>
+	<%= form.label :caption %> ~<br> </strong>
+	<%= form.text_field :caption %>
+</div>
+ <div class="field">
+    <%= form.file_field :avatar ,multiple: true %>
+  </div>
+ 
+<div>
+	<%= form.submit "Save" %>
+</div>
+<% end %>
+<%= link_to "Back" , root_path %>

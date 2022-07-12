@@ -1,0 +1,51 @@
+
+<html>
+<head></head>
+<body>
+<div style="width: 100%;">
+<div style="width: 101%; height: 190px; float: left; background: pink;">
+<h1><marquee><strong><em>Viniii...</em></strong></marquee></h1>
+
+<p class="navbar-text float-right">
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<%# byebug %>
+ <% if current_user.role?.eql?("Admin") %>
+  <h>Users</h>
+  <%= render "user" %>
+<% else %>
+<table>
+  <tr>
+    
+    <th>Email</th>
+    <th>Role</th>
+  </tr>
+  
+  <tr>
+    <td><%= current_user.email %></td>
+    <td><%= current_user.role? %></td>
+  </tr>
+  </table>
+<%= link_to "New Post" ,  new_post_path %>
+
+  <% end %>
+
+  <br>
+  <h2>Posts</h2>
+  <%= render "posts/post" %>
+
+
+
+
+
+
+
+
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
+</div>
